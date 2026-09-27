@@ -5,9 +5,13 @@ the desktop app, has [its own changelog](https://github.com/rk-platform/workspac
 
 ## Unreleased
 
+## 1.0.0 (2026-09-27)
+
+- Installation improvements.
+
 ## 0.48.0 (2026-09-27)
 
-- `rk install`, `rk update` and `rk uninstall` improvments.
+- `rk install`, `rk update` and `rk uninstall` improvements.
 - Plugins can be configured from RK Workspace's Settings window.
 - Several bugfixes
 

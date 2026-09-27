@@ -20,7 +20,7 @@ This repository holds RK's releases and its installer. It installs:
 - An Apple Silicon Mac with macOS 15 or later.
 - [Claude Code](https://claude.com/claude-code), installed and logged in. For the alpha, RK's
   larger models run through it; support for Codex and open-source models is coming soon.
-- [Homebrew](https://brew.sh), which `rk install` uses for the tools it installs.
+- [Homebrew](https://brew.sh), which `rk install` uses for the tools it installs. It offers to install Homebrew if it is missing.
 - Several GB of disk for the local models.
 
 ## Install
@@ -112,9 +112,9 @@ help. `RK_LOG=off` turns it off.
 `uninstall failed`. It carries the rk version (and on an update the one you came from), the
 RK Workspace version, your OS, OS version and processor architecture, and nothing else: no
 identifier, nothing that links two events from the same machine. Plausible works out your
-country from the request's IP address and does not keep the address. The event is printed in
-full before the command starts; press Ctrl-C then if you do not want it sent. rk and RK
-Workspace send nothing else.
+country from the request's IP address and does not keep the address. The command says, in
+one line at its start, that it logs the event and with which values; if you do not want it
+sent, stop the command with Ctrl-C. rk and RK Workspace send nothing else.
 
 RK fetches web pages from your own network connection, and provides no anonymity of its own.
 `rk opsec` shows what a site sees when RK visits it: your IP address and provider, your DNS
