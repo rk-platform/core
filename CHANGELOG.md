@@ -5,6 +5,11 @@ the desktop app, has [its own changelog](https://github.com/rk-platform/workspac
 
 ## Unreleased
 
+## 0.1.50 (2026-09-27)
+
+- Case process improvements.
+- Bug fixes and improvements.
+
 ## 0.1.49 (2026-09-27)
 
 - Bug fixes and improvements.
