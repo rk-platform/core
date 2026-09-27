@@ -31,7 +31,7 @@ This puts `rk` in `~/.rk/bin`, adds that to your `PATH`, and runs `rk install`, 
 what RK needs, asking before it downloads anything large:
 
 - `uv` and the pinned Python helpers RK fetches web pages with;
-- `pdftotext`, `exiftool` and `tesseract`, for PDFs, file metadata and scanned documents;
+- `pdftotext`, for PDFs;
 - Docker (colima), for rendering reports to PDF;
 - llama.cpp and the local models RK runs on your own machine;
 - RK Workspace, into `/Applications`.
