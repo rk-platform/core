@@ -99,11 +99,22 @@ documents are indexed without leaving your machine.
     rk update       # rk, and RK Workspace when a newer one is released
     rk uninstall    # removes what rk install added
 
+[CHANGELOG.md](CHANGELOG.md) lists what changed in each release.
+
 ## Privacy
 
 RK keeps a log at `~/.rk/rk-YYYY-MM-DD.log`. It records commands, file paths, counts and
 timings, and never the content of your research, so it is safe to share when you ask for
 help. `RK_LOG=off` turns it off.
+
+`rk install`, `rk update` and `rk uninstall` each send one event to our Plausible analytics:
+`installed`, `updated` or `uninstalled`, or `install failed`, `update failed` or
+`uninstall failed`. It carries the rk version (and on an update the one you came from), the
+RK Workspace version, your OS, OS version and processor architecture, and nothing else: no
+identifier, nothing that links two events from the same machine. Plausible works out your
+country from the request's IP address and does not keep the address. The event is printed in
+full before the command starts; press Ctrl-C then if you do not want it sent. rk and RK
+Workspace send nothing else.
 
 RK fetches web pages from your own network connection, and provides no anonymity of its own.
 `rk opsec` shows what a site sees when RK visits it: your IP address and provider, your DNS
