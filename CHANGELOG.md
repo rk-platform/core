@@ -5,7 +5,7 @@ the desktop app, has [its own changelog](https://github.com/rk-platform/workspac
 
 ## Unreleased
 
-## 1.0.0 (2026-09-27)
+## 0.1.48 (2026-09-27)
 
 - Installation improvements.
 
