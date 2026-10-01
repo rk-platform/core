@@ -1,26 +1,27 @@
 # RK
 
-RK, the Research Knowledge Platform, turns a research question into a report you can stand
-behind. It collects sources from the web and your own files, turns them into claims tied to
-the evidence behind them, judges what the evidence supports, and writes the report. Your
-research stays on your machine, in plain markdown files.
-
-RK is about to go into alpha testing. It runs on Apple Silicon Macs only for now; Linux and
-Windows support are planned.
+RK, the Research Knowledge Platform, is a local-first workspace built around AI. It brings
+your AI models, documents, notes and the web into one place. You can research the web, build
+and organize knowledge, extend RK with skills and plugins, and write reports. Your work
+stays on your machine, in plain markdown files.
 
 This repository holds RK's releases and its installer. It installs:
 
-- `rk`, the command line, with a terminal interface (`rk` on its own opens it) and the
-  background daemon both of them talk to;
-- **RK Workspace**, the desktop app. Its releases live in
-  [rk-platform/workspace](https://github.com/rk-platform/workspace).
+- **RK Core**, the background daemon that does the work, and `rk`, the command line, with a
+  terminal interface (`rk` on its own opens it); both are clients of the daemon;
+- **RK Workspace**, the desktop app. Its releases live in [rk-platform/workspace](https://github.com/rk-platform/workspace).
+
+## State
+
+RK is currently in pre-alpha. Alpha will start within days. If you want to test it in alpha or beta we would appreciate if you send a mail to <support@10boring.com>.
+RK is about to go into alpha testing. It runs on Apple Silicon Macs only for now; Linux and
+Windows support are planned in the near future.
 
 ## Requirements
 
 - An Apple Silicon Mac with macOS 15 or later.
 - [Claude Code](https://claude.com/claude-code), installed and logged in. For the alpha, RK's
   larger models run through it; support for Codex and open-source models is coming soon.
-- [Homebrew](https://brew.sh), which `rk install` uses for the tools it installs. It offers to install Homebrew if it is missing.
 - Several GB of disk for the local models.
 
 ## Install
@@ -84,7 +85,7 @@ RK asks for a model by size, not by name, and each size is a setting:
 
 | Tier | Default | Runs |
 |---|---|---|
-| `xxs` | Gemma 3 270M | locally, through llama.cpp |
+| `xxs` | Gemma 3 270M, off by default (`rk set features.xxs_tier true`) | locally, through llama.cpp |
 | `xs` | Gemma 4 E4B | locally, through llama.cpp |
 | `small` | Claude Haiku 4.5 | through Claude Code |
 | `medium` | Claude Sonnet 5 | through Claude Code |

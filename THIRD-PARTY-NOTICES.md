@@ -25,7 +25,7 @@ tiers run gemma-4 and gemma-3, under the same terms, fetched by the same
 - Project: https://huggingface.co/Qwen/Qwen3-Reranker-0.6B
 - License: Apache License 2.0
 
-The re-ranking model behind processing's `rerank` toggle, downloaded (not
+The re-ranking model behind processing's re-ranked search, downloaded (not
 compiled in) by `rk install` as a GGUF and served by llama-server. rk converts
 Alibaba's weights itself (`tools/models/convert-qwen3-reranker.sh`) and
 publishes the result as a release asset of this repository, pinned by URL and
