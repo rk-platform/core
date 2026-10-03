@@ -3,13 +3,19 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.53 (2026-10-03)
+
+- Bugfifxes for sync and update.
+
 ## 0.1.52 (2026-10-03)
 
 This is pre-alpha release number 3.
 - Tables, tags and links between notes, shown in the workspace.
 - RK can copy a file into a project, or into `input/` ready to ingest, for dropping files on RK Workspace, and can give a new note the next free name.
 - The chat can read, create and edit your own files in the project when you ask it to.
+- `rk update` restarts the daemon on the new version (once a running background job is done) and tells you to reopen RK Workspace when it was updated too.
 - A project can sync itself to GitHub, GitLab, Bitbucket or your own Gitea or Forgejo server, with conflicts merged for you: `rk sync-setup`, `rk sync`, `rk sync-stop` and `rk clone`.
+- Installing and updating no longer fail with "status 403" behind a shared internet connection: rk finds its releases without GitHub's rate-limited API.
 - The chat can explain a feature from the help pages.
 - RK can create, rename, move, duplicate, delete and restore a project's own notes for the workspace, with the links in your other notes updated and deleted files kept in `.trash/` until you empty it.
 - Direction plans collection from what the KB already holds

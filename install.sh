@@ -9,7 +9,10 @@ REPO="${RK_INSTALL_REPO:-rk-platform/core}"
 # all resolve this same path from $HOME, so a bin dir chosen only here would
 # leave the install pointing at a directory rk itself never looks in.
 BIN_DIR="$HOME/.rk/bin"
-API="https://api.github.com/repos/$REPO/releases/latest"
+# The site's own "latest release" page, not api.github.com: the API allows an
+# unauthenticated IP 60 calls an hour, and an operator behind an IP whose quota
+# others had spent could not install at all (#334).
+LATEST="https://github.com/$REPO/releases/latest"
 
 # Digest tool, chosen once. Not `sha256sum ... || shasum ...`: a pipeline's
 # exit status is its LAST command's, so the fallback after a pipe never fires
@@ -36,24 +39,21 @@ case "$os" in
   *) echo "install.sh: unsupported OS $os (rk runs on macOS and Linux)" >&2; exit 1 ;;
 esac
 
-echo "research-kit: fetching latest release info from $API"
-release_json=$(curl -fsSL "$API")
+echo "research-kit: finding the latest release at $LATEST"
+# The page answers with a redirect to the newest tag's page; the tag is the
+# last segment of its Location, read without following it.
+location=$(curl -fsSI "$LATEST" | tr -d '\r' | grep -i '^location:' | head -n1 || true)
+case "$location" in
+  */releases/tag/?*) tag=${location##*/releases/tag/} ;;
+  *) echo "install.sh: could not find the latest release at $LATEST" >&2; exit 1 ;;
+esac
+DOWNLOAD="https://github.com/$REPO/releases/download/$tag"
 
-# Extract the download URL for the asset named $1, without a JSON parser
-# (matches the existing repo convention of staying dependency-free in shell
-# scripts). It matches the URL itself rather than pairing the "name" field
-# with the "browser_download_url" field: every real GitHub asset object nests
-# an "uploader" object between those two, so any pattern spanning them has to
-# cross a `}`, which no simple grep does safely. Release download URLs are
-# always .../releases/download/<tag>/<asset name>, which identifies the asset
-# on its own.
+# Where the asset named $1 downloads from. Release downloads are always
+# .../releases/download/<tag>/<asset name>, so the URL is built rather than
+# looked up; an asset the release does not carry fails at download.
 asset_url() {
-  name="$1"
-  printf '%s' "$release_json" \
-    | tr ',' '\n' \
-    | grep -o "\"https://[^\"]*/releases/download/[^\"]*/$name\"" \
-    | tr -d '"' \
-    | head -n1
+  printf '%s/%s' "$DOWNLOAD" "$1"
 }
 
 mkdir -p "$BIN_DIR"
@@ -61,20 +61,18 @@ tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
 checksums_url=$(asset_url "checksums.txt")
-if [ -z "$checksums_url" ]; then
-  echo "install.sh: could not find checksums.txt in the latest release" >&2
+if ! curl -fsSL "$checksums_url" -o "$tmp/checksums.txt"; then
+  echo "install.sh: could not download checksums.txt from release $tag" >&2
   exit 1
 fi
-curl -fsSL "$checksums_url" -o "$tmp/checksums.txt"
 
 for name in rk; do
   asset="$name-$os-$arch"
   url=$(asset_url "$asset")
-  if [ -z "$url" ]; then
-    echo "install.sh: no $asset asset in the latest release" >&2
+  if ! curl -fsSL "$url" -o "$tmp/$asset"; then
+    echo "install.sh: no $asset asset in release $tag" >&2
     exit 1
   fi
-  curl -fsSL "$url" -o "$tmp/$asset"
   want=$(grep "  $asset\$" "$tmp/checksums.txt" | cut -d' ' -f1)
   if [ -z "$want" ]; then
     echo "install.sh: no checksum entry for $asset" >&2
