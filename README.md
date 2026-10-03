@@ -123,4 +123,5 @@ resolver, and whether it looks like a bot.
 
 ## License
 
-RK is proprietary software. See [LICENSE](LICENSE).
+RK is proprietary software, licensed under an end user license agreement. The free edition
+is free to use, and paid editions add features. See [LICENSE](LICENSE).

@@ -3,12 +3,32 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.52 (2026-10-03)
+
+This is pre-alpha release number 3.
+- Tables, tags and links between notes, shown in the workspace.
+- RK can copy a file into a project, or into `input/` ready to ingest, for dropping files on RK Workspace, and can give a new note the next free name.
+- The chat can read, create and edit your own files in the project when you ask it to.
+- A project can sync itself to GitHub, GitLab, Bitbucket or your own Gitea or Forgejo server, with conflicts merged for you: `rk sync-setup`, `rk sync`, `rk sync-stop` and `rk clone`.
+- The chat can explain a feature from the help pages.
+- RK can create, rename, move, duplicate, delete and restore a project's own notes for the workspace, with the links in your other notes updated and deleted files kept in `.trash/` until you empty it.
+- Direction plans collection from what the KB already holds
+- A command that writes to your project now checks it first, puts back what rk can rebuild, and tells you what is wrong instead of writing over damage.
+- `rk kb read` reads a document, or a range of its chunks, from the terminal: the next step after a `rk kb search` hit.
+- RK can tell which of your notes are about a file, entity, case or folder, for the workspace.
+- rk tells you when a newer version is released: a line above any command, and `rk status` shows it for rk and for RK Workspace. `rk update --core-only` and `--gui-only` update one half, and `rk daemon restart --when-done` restarts the daemon once its background jobs finish.
+- RK has a new license: an end user license agreement under which the free edition is free to use, with paid editions to come. Usage telemetry is never a condition of it.
+- Searching the knowledge base (`rk kb search`, the workspace search and the chat) puts the passages that answer your question first, over your sources and your own notes by default. `--derived` and `--no-derived` choose whether rk's own reports are included.
+- `rk kb ingest-bundle` takes in a page rk collected but you chose not to ingest, and with no name lists the ones still waiting.
+- Commands report where they are while they run, step by step, so the workspace's activity line keeps moving.
+
 ## 0.1.51 (2026-10-01)
 
 This is pre-alpha release number 2.
 - Support Sonnet 5.5 and Opus 5.5, default medium and large for claude.
 - Case processing no longer has settings for its retrieval and writing improvements: it always uses them.
 - On a Mac, rk starts colima when a render needs docker and stops it again after five idle minutes, so the VM does not hold memory between runs. A colima you started yourself is left alone.
+- Direction searches the knowledge base for what it already holds before planning collection, shows you what it found, and plans steps only for what is missing. `rk kb search --rerank` returns the same passages.
 - Case summaries, evaluation and direction follow their instructions more reliably at the model tier they run on.
 - A collection step that comes back empty is now ticked off and marked as having landed nothing, so a plan no longer stays stuck on it. A fetched page step (reach-it) that did land is ticked too, where it was left open before.
 - Collection runs are kept together under a project's `runs/` folder, and search no longer finds each collected document twice; existing run folders move there when the project is upgraded.
