@@ -3,6 +3,12 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.56 (2026-10-04)
+
+- Security and reliability fixes: fetching refuses local and private addresses, rk's files and socket are private to you, and case notes are saved safely even if the disk fills.
+- An edited verdict in the assessment is recorded the next time Analysis runs; until then the report lists it as open.
+- rk runs its local models on the CPU inside a virtual machine, where the virtual GPU could freeze the machine, and the re-ranker's context is a setting that starts smaller on a computer with under 16 GB of memory.
+
 ## 0.1.55 (2026-10-04)
 
 - rk no longer starts the local Extra small model on a computer with less than 16 GB of memory. It says why in Doctor and in the log instead of hanging.

@@ -56,7 +56,9 @@ asset_url() {
   printf '%s/%s' "$DOWNLOAD" "$1"
 }
 
-mkdir -p "$BIN_DIR"
+# umask 077: a fresh ~/.rk is created private, since it comes to hold case
+# content, settings and transcripts.
+(umask 077 && mkdir -p "$BIN_DIR")
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 

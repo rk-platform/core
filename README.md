@@ -23,6 +23,10 @@ Windows support are planned in the near future.
 - [Claude Code](https://claude.com/claude-code), installed and logged in. For the alpha, RK's
   larger models run through it; support for Codex and open-source models is coming soon.
 - Several GB of disk for the local models.
+- At least 16 GB of memory is recommended. A Mac with 8 GB can work with limitations: the `xs`
+  model has to be an external one (a Claude or Codex model), because the local model needs 16 GB
+  and rk will not start it on less. The local embedding and re-ranking models then run with
+  smaller memory settings, and inside a virtual machine they run on the CPU.
 
 ## Install
 
@@ -90,6 +94,9 @@ RK asks for a model by size, not by name, and each size is a setting:
 | `small` | Claude Haiku 4.5 | through Claude Code |
 | `medium` | Claude Sonnet 5.5 | through Claude Code |
 | `large` | Claude Opus 5.5 | through Claude Code |
+
+On a Mac with less than 16 GB of memory, point `xs` at a Claude or Codex model in RK Workspace
+Settings, under Models.
 
 `rk set llm <tier> model <name>` changes what a tier runs, and `rk model status` shows whether
 the local models are running. Semantic search runs on a local embedding model, so your
