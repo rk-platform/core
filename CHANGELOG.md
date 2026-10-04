@@ -3,6 +3,10 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.57 (2026-10-04)
+
+- Re-ranking can be switched off in Settings for a computer too slow for it: search then returns its candidates unscored, the re-rank model is not started or downloaded, and Doctor lists it as disabled.
+
 ## 0.1.56 (2026-10-04)
 
 - Security and reliability fixes: fetching refuses local and private addresses, rk's files and socket are private to you, and case notes are saved safely even if the disk fills.
