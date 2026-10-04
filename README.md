@@ -49,7 +49,7 @@ repairs one thing.
 A project holds your research; its knowledge base is shared by every case in it. A case is
 one research question worked through from question to report.
 
-    rk project create ~/research/acme --name "Acme" --purpose "Supplier due diligence"
+    rk project create ~/research/acme
     cd ~/research/acme
     rk case create "Who owns Acme"
 
@@ -85,10 +85,10 @@ RK asks for a model by size, not by name, and each size is a setting:
 
 | Tier | Default | Runs |
 |---|---|---|
-| `xxs` | Gemma 3 270M, off by default (`rk set features.xxs_tier true`) | locally, through llama.cpp |
+| `xxs` | Gemma 3 270M, off by default (turn on "Extra-extra small tier" in RK Workspace Settings) | locally, through llama.cpp |
 | `xs` | Gemma 4 E4B | locally, through llama.cpp |
 | `small` | Claude Haiku 4.5 | through Claude Code |
-| `medium` | Claude Sonnet 5 | through Claude Code |
+| `medium` | Claude Sonnet 5.5 | through Claude Code |
 | `large` | Claude Opus 5.5 | through Claude Code |
 
 `rk set llm <tier> model <name>` changes what a tier runs, and `rk model status` shows whether

@@ -3,6 +3,11 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.55 (2026-10-04)
+
+- rk no longer starts the local Extra small model on a computer with less than 16 GB of memory. It says why in Doctor and in the log instead of hanging.
+- Changing a setting restarts the rk daemon once its background jobs are done, so the new value takes effect without `rk daemon restart`.
+
 ## 0.1.54 (2026-10-04)
 
 - **Check for updates** in the workspace palette looks for a new release right away instead of waiting for the daily check, and the **Update rk** button goes away once rk is updated.
