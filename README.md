@@ -77,7 +77,8 @@ Other ways in:
 - `rk web-research --question "..."` researches one question across the web and writes a
   cited report, without a case.
 - `rk chat` talks to your knowledge base over many turns.
-- `rk plugin` adds tools of your own. PhoneInfoga ships as a built-in plugin.
+- `rk collector` adds collection plugins of your own. PhoneInfoga ships as a built-in one.
+- `rk plugin install` adds plugins and MCP servers from a marketplace or a repository.
 - `rk reach <url>` fetches and captures one page, trying further methods when a site blocks
   the first.
 

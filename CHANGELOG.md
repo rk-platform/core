@@ -3,6 +3,85 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.1.58 (2026-10-12)
+
+- Plugins: install from any marketplaces, repository or JSON, supporting plugins written for the open Agent Plugins standard (mcp, skills and more). Support for rk collection plugins.
+- Marketplace: Curated list of recommended plugins plus rk collection plugins.
+- New plugins: Collect from Reddit and Telegram. Start a collection plugin from its icon, the palette, the chat or `rk collect reddit "…"`; it collects in the background and ends in a report that links every Source it landed.
+- The chat runs rk's commands for you: web search, fetch, web research, ingest, a case phase or a sync. The command asks its questions in the chat and tells you when it is done. The chat also uses skills from your plugins and follows your AGENTS.md.
+- Long runs survive: case phases and web research keep going when you close the terminal (`rk job attach` follows them again), and continue where they were after a crash or reboot without paying twice.
+- See model cost while it works, in estimated dollars.
+- Research report from what your project already holds, Search improvment for your notes and case files, and a web search returns a ranked list of answers before ingesting anything. 
+- Web research improvments.
+- Increased reachability using real browser. 
+- Faster Claude calls with warm processes, Codex on OpenAI's newest models without the Codex CLI (`rk login codex`), and a set effort per model size (`rk set llm medium effort high`).
+- Editions: Free, Pro or Intelligence. Beta is on Intelligence.
+- Docker support for Apple's container, Docker or colima with doctor support.
+- Bug fixes and improvements.
+- Performance enhancements.
+- `rk plugin list` and `rk plugin install` say what rk left out of a plugin written to the Agent Plugins specification: a `plugin.json` field it does not define, an `mcp.json` it refuses, each server it skips, a key or install value of rk's it cannot use, and a `.mcp.json` it does not read.
+- A plugin written to the Agent Plugins specification can carry rk's own keys (its kinds, icon, install values and server sign-in) under rk's namespace, `com.10boring.rk`, and its servers' `mcp.json` entries take only the specification's own placeholders.
+- The chat no longer sends every installed MCP server's tools with every turn; it loads only the tools of a plugin it needs when you ask for something that plugin does, so installing more servers no longer makes each turn slower and more expensive.
+- Reports and assessments are written in English, in one voice, and cite their sources the same way every time.
+- A processing run limited to one question no longer marks the case processed while another question has never been read.
+- A web research or plugin collection report covers only what that run collected, laid out as a collection report with what was searched and where to look next; to report on everything the project already holds, use kb research. `rk web-research --kb` is gone.
+- Direction can take a handed-over document's stated wording as an assumption, and grades wording you cannot vouch for as a transcription rather than a description.
+- A plugin's server finds its plugin folder and its kept data folder in the `PLUGIN_ROOT` and `PLUGIN_DATA` environment variables.
+- A plugin's server that names no working folder runs in the plugin's own folder, so it finds the files it ships with.
+- After an update, `rk login`, plugin sign-in and the terminal interface restart a daemon still running the older rk instead of talking to it.
+- A plugin written to the Agent Plugins specification is checked the way the specification says: a bad `plugin.json` stops the install, a bad `mcp.json` or server entry costs only those servers, and a server's command, URL and headers are used as written.
+- A plugin written to the Agent Plugins specification loses only the part a symlink leading outside it belongs to, skips a skill that does not follow the Agent Skills specification, and a server's headers never follow a redirect to another site.
+- The daemon hands RK Workspace the bytes of an image or a PDF up to 6 MB, so the workspace can show it.
+- A collection with a plugin lands only what bears on what it collects for, and captures a page only for what lands.
+- Reports name a cited document that has no title of its own by its opening words rather than its file slug, and cite a document with no author by the site that published it.
+- Doctor checks that your container runtime runs and its containers reach the internet; when a VPN blocks Apple's container, Doctor and the render both print the command that lets it through.
+- A plugin says how rk uses it with `kinds` in its `.rk-plugin/plugin.json`, and keeps skills only rk uses in `.rk-plugin/skills/`, out of other agents' way.
+- Start a collection plugin yourself: each one has an icon on the left and an entry in the command palette, the chat can start it, and `rk collect reddit "…"` does it from the terminal. Once its questions are answered it collects in the background, and ends in a report on what it found that links every Source it landed.
+- Collect from Telegram with the telegram plugin: messages, the conversation around them and their media land as Sources, read through your own research accounts.
+- rk answers the map of a project's documents and their links that RK Workspace's graph view draws.
+- A command that needs the project's index while it is being synced waits and runs once the index is free, instead of failing with `busy`.
+- PDFs render with Apple's container, Docker or colima, whichever your Mac has; rk install picks one and Settings can change it.
+- A run shows what it has spent while it works, in the terminal interface's status line and in the workspace, and costs are shown as estimated dollars.
+- A plugin can teach rk to collect with its MCP server when it declares itself a collection plugin; Reddit is the first. rk reads its own plugin format (`.rk-plugin/`) first, and plugins written for Claude Code or Codex still install.
+- The web-archive rung and its setting are gone; the Internet Archive tool does that job.
+- A command the chat starts now answers with its job number at once and runs its own interview with you in the chat: its questions come with the file they are about, the interviewer knows what you said in the chat first, and the chat tells you when the job is done. Closing the chat ends a job that is still asking.
+- A case phase or web research cut off by a daemon restart, a crash or a reboot continues from where it was when the daemon comes back, without redoing finished work or paying for a model call twice. A Direction cut off mid-conversation continues next time you start it, asking the waiting question again.
+- Every case phase reads your whole case file and its status page when it works, so what it does follows the case as you set it up.
+- Processing forms no claim from a source that says nothing on the question, instead of one claim for each source it was shown.
+- The score changes an Analysis proposes are now made; before, most of them were dropped without a word.
+- A case report no longer repeats the gaps, the contradictions and the so-what under its last question.
+- The chat offers skills from installed plugins and your own skill folders, and follows your AGENTS.md.
+- Plugins written to the open Agent Plugins standard (agent-plugins.org) install and run in rk.
+- Plugins whose MCP server needs a sign-in, such as Gmail, can be signed in to with `rk plugin login`, with more than one account.
+- A plugin whose MCP server signs in with its own command, such as Outlook, shows Not signed in and signs in with `rk plugin login`, which prints the page to open and the code. `rk install` offers to install Node for plugins that run with `npx`.
+- The plugins in OpenAI's Codex marketplace (openai/plugins) can be installed; before, most were listed as not installable.
+- Fetching a page with the headless browser no longer ends in an empty capture when the page is still loading, so a page that was reachable is no longer reported as blocked.
+- The chat and scripts can ask for your own browser when a site blocks a fetch (`--operator-browser`), and the chat asks you first. `rk project retry` says so when nobody is there to use the browser, instead of reporting nothing tried.
+- rk installs plugins and their MCP servers from marketplaces, repositories or JSON (`rk marketplace`, `rk plugin install`), and their tools reach rk's models. rk's own plugins are now collection plugins, managed with `rk collector`.
+- `rk kb research` writes a report from what your project already holds, searching the knowledge base, your notes, or both.
+- A web search now gives you a ranked list of the pages that answer your question, each with a line on what it says, and ingests nothing until you say so.
+- `rk search` finds your notes and case files; `rk kb search` now searches the knowledge base only.
+- A model size can run at a set effort: `rk set llm medium effort high` makes every call on it think harder, and `default` takes it off again.
+- Codex uses OpenAI's newest models by default: gpt-6-luna for the small tiers and for medium, where it thinks harder, and gpt-6.1-sol for large. gpt-6.1-sol can be chosen for medium, gpt-6-astra for large, and the gpt-5.6 models stay available.
+- rk runs as one edition, Free, Pro or Intelligence, chosen under Edition in Settings. During the beta every install starts on Intelligence.
+- The chat can run rk's commands for you: search the web, fetch a page, look up a domain, run web research, ingest a bundle or run a case phase, asking you first for anything it needs.
+- Long case phases keep running when you close the terminal, and you can follow them again with `rk job attach`. A case runs one phase at a time: starting the phase that is running follows it, and starting another one is refused until it is done.
+- Claude calls start faster: rk keeps a Claude process ready for the next call, so a call no longer waits for Claude to start. Two settings bound it: Claude warm-up timeout and Claude warm processes.
+- Codex models no longer need the Codex CLI: log in once with `rk login codex`.
+- Reports and assessments are written in the case folder, and rk's bookkeeping moved to a hidden `.meta` folder; existing projects are moved over automatically.
+- Sync no longer waits for a chat to be closed: an open chat, or a direction waiting for your answer, does not hold a sync back, and a sync that had to wait runs as soon as the project is free.
+- In a project that syncs, the chat can sync it when you ask, with a new sync tool.
+- Replacing a document at ingest no longer loses the old one when the new one is refused, and `rk kb ingest-bundle` says when the index could not be updated.
+- A Processing run in which a view failed no longer marks the case processed, and a Collection round that cannot close the phase says so.
+- A fault in the daemon's background work (file watching, index refresh, sync) no longer stops every running job, a cancelled job stops at once even when every slot is busy, and `rk jobs` no longer waits on a slow disk.
+- A model that keeps calling tools is asked for its answer after 40 turns instead of searching on, long document and file reads come back a page at a time, and a broken Python environment for fetching is repaired on its own.
+- The xs and xxs tiers run the local model their setting names; a model file that is missing is reported by `rk doctor`.
+- A changed setting takes effect at the next command, with no daemon restart, and runs started together now share one limit on model and fetch calls.
+- The spend a run reports includes model calls that failed after the provider billed them, and cached prompt tokens on OpenAI-compatible endpoints; a Processing run writes its view summaries and checks its claims for duplicates in parallel.
+- A knowledge base index that fails to upgrade keeps the chunk context sentences already paid for, and the index engine stays within 256 MB per connection.
+- On a Mac, watching a large project no longer runs out of file handles. A project is watched only while it is open in the workspace window, and from a terminal a project syncs only after a command you run.
+- web-research lands only the pages that bear on your question. Pages found off the question stay in the run folder, and the run report says which angles found none; `rk kb ingest-bundle <run> --page <slug>` takes one in anyway.
+
 ## 0.1.57 (2026-10-04)
 
 - Re-ranking can be switched off in Settings for a computer too slow for it: search then returns its candidates unscored, the re-rank model is not started or downloaded, and Doctor lists it as disabled.
