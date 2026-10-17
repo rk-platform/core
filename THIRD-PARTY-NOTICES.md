@@ -47,3 +47,15 @@ and sha256 in `rkv2/shared/selfinstall/plugins.go`, and shipped unmodified. rk
 runs it as a separate program for the length of one plugin call and talks to
 it only over its REST API; no part of it is linked into rk. Its source is at
 the project URL above.
+
+## searxng/searxng
+
+- Project: https://github.com/searxng/searxng
+- License: GNU Affero General Public License v3.0 or later
+
+The metasearch engine behind rk's SearXNG search. rk does not ship it. On the
+operator's request rk installs it from the fork at
+https://github.com/rk-platform/searxng (tag rk1.0.0, forked from upstream commit
+22c64b8d394b680c7ea96be25f36dad14126420a) and runs it as a separate program on
+the operator's own machine, talking to it only over HTTP; no part of it is
+linked into rk. Its source is at the fork URL above.

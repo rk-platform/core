@@ -3,7 +3,23 @@
 What changed in each release of RK (`rk`, its terminal interface and its daemon). RK Workspace,
 the desktop app, has [its own changelog](https://github.com/rk-platform/workspace/blob/main/CHANGELOG.md).
 
+## 0.2.0 (2026-10-17)
+
+This is the pre alpha release number 5.
+- Light report: a cited answer to a case's questions from what the knowledge base holds.
+- rk-ignored files: the file tree marks what rk does not index, and a setting hides it.
+- Ingest into KB: any document in your project can be taken into the knowledge base from its right-click menu, keeping the original. `rk kb ingest --file input/<name>` takes in one file from `input/`.
+- Search: choose Exa or Brave with your own key, or keep the built-in search.
+- Username search: the maigret plugin finds where a username exists across thousands of sites and lands a dated report of every hit, every miss and every site it could not check.
+- Email and username search: the user-scanner plugin finds which services an address or a username is registered with, and asks before running checks that would alert the account holder.
+- Run again: right-click a run's folder to run it again, or carry a web research on.
+- Paper collection: a case collects academic papers with the paper-search plugin, lands each paper's text as a Source, finding a free copy where the publisher blocks the download, and lists every paper it found.
+- Plugin updates: rk tells you when an installed plugin has a newer version, and `rk plugin update` installs it with its settings kept.
+- Bug fixes and improvements.
+
 ## 0.1.58 (2026-10-12)
+
+This is the pre alpha release number 4.
 
 - Plugins: install from any marketplaces, repository or JSON, supporting plugins written for the open Agent Plugins standard (mcp, skills and more). Support for rk collection plugins.
 - Marketplace: Curated list of recommended plugins plus rk collection plugins.
@@ -28,6 +44,7 @@ the desktop app, has [its own changelog](https://github.com/rk-platform/workspac
 - Direction can take a handed-over document's stated wording as an assumption, and grades wording you cannot vouch for as a transcription rather than a description.
 - A plugin's server finds its plugin folder and its kept data folder in the `PLUGIN_ROOT` and `PLUGIN_DATA` environment variables.
 - A plugin's server that names no working folder runs in the plugin's own folder, so it finds the files it ships with.
+- A deleted case or run folder can be restored from the trash.
 - After an update, `rk login`, plugin sign-in and the terminal interface restart a daemon still running the older rk instead of talking to it.
 - A plugin written to the Agent Plugins specification is checked the way the specification says: a bad `plugin.json` stops the install, a bad `mcp.json` or server entry costs only those servers, and a server's command, URL and headers are used as written.
 - A plugin written to the Agent Plugins specification loses only the part a symlink leading outside it belongs to, skips a skill that does not follow the Agent Skills specification, and a server's headers never follow a redirect to another site.
@@ -110,6 +127,7 @@ the desktop app, has [its own changelog](https://github.com/rk-platform/workspac
 ## 0.1.52 (2026-10-03)
 
 This is pre-alpha release number 3.
+
 - Tables, tags and links between notes, shown in the workspace.
 - RK can copy a file into a project, or into `input/` ready to ingest, for dropping files on RK Workspace, and can give a new note the next free name.
 - The chat can read, create and edit your own files in the project when you ask it to.
